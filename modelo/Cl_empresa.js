@@ -5,22 +5,22 @@ export default class Cl_empresa {
     agregar(personal){
         this.arrayPersonal.push(personal);
     }
-    nuevoSueldo(){
+    nuevoSueldo(cedula){
         let aumento = 0;
         this.arrayPersonal.forEach((p) =>{
-            switch(true){
+            /*switch(true){
                 case (p.tipo === 1):
                     aumento = p.sueldoAd + (p.sueldoAd * 0.20);
                     break;
                 case (p.tipo === 2):
                     aumento = p.sueldoAd + (p.sueldoAd * 0.10);
                     break;
-            }
-           /* if(p.tipo === 1){
-                aumento = p.sueldoAd + (p.sueldoAd * 0.20);
-            }if(p.tipo === 2){
-                aumento = p.sueldoAd + (p.sueldoAd * 0.10);
             }*/
+           if((p.tipo === 1) && (p.cedula === cedula)){
+                aumento = p.sueldoAd + (p.sueldoAd * 0.20);
+            }if((p.tipo === 2) && (p.cedula === cedula)){
+                aumento = p.sueldoAd + (p.sueldoAd * 0.10);
+            }
         })
         return aumento;
     }
@@ -29,7 +29,10 @@ export default class Cl_empresa {
         let acSueldo = 0;
         this.arrayPersonal.forEach((p) =>{
             acSueldo += p.sueldoAd
-            acNuevoSueldo += this.nuevoSueldo();
+            acNuevoSueldo += this.nuevoSueldo(p.cedula);
+            /*p.tipo === 1 ? 
+            acNuevoSueldo += p.sueldoAd + (p.sueldoAd * 0.20) : 
+            acNuevoSueldo += p.sueldoAd + (p.sueldoAd * 0.10);*/
         });
         return acNuevoSueldo - acSueldo;
     }

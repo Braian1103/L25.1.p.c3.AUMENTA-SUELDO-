@@ -1,11 +1,11 @@
 export default class Cl_personal {
-    constructor(cedula, sueldoAd, tipo) {
+    constructor({cedula, sueldoAd, tipo}) {
         this.cedula = cedula;
         this.sueldoAd = sueldoAd;
         this.tipo = tipo;
     }
     set cedula(c) {
-        this._cedula = c;
+        this._cedula = +c;
     }
     get cedula() {
         return this._cedula;
